@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import reducer from './duck/reducer'; 
 import AuthGate from './containers/AuthGate';
 
-import { setUser, setLoggedin } from './duck/actions';
+import { setUser, setLoggedin, setReceivedSong } from './duck/actions';
 
 import firebase from './firebaseConfig';
 
@@ -21,6 +21,7 @@ firebase.auth().onAuthStateChanged( user => {
   else { 
     store.dispatch(setUser({}));
     store.dispatch(setLoggedin(false));
+    store.dispatch(setReceivedSong({title: '', artist: '', }))
   }
 });
 

@@ -1,4 +1,4 @@
-import { ADD_SONG, SET_TITLE, SET_ARTIST, SET_RECEIVED, SET_HISTORY, SET_USER, SET_LOGGEDIN } from './types'; 
+import { ADD_SONG, SET_TITLE, SET_ARTIST, SET_RECEIVED, SET_HISTORY, SET_USER, SET_LOGGEDIN, SET_USER_PUSHED } from './types'; 
 
 const INITIAL_STATE = {
     title: '',
@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     history: [],
     user: {}, 
     loggedin: false, 
+    userPushed: []
     
 }
 
@@ -76,6 +77,13 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state, 
                 loggedin
+            }
+        }
+        case SET_USER_PUSHED: { 
+            let userPushed = [...action.payload]; 
+            return {
+                ...state, 
+                userPushed
             }
         }
         default: {

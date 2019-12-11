@@ -56,7 +56,7 @@ class Auth extends Component {
 
     onClick()  {
         if (this.state.newUser) {
-            this.props.userSignup({'email': this.state.email, 'password': this.state.password})
+            this.props.userSignup({'email': this.state.email, 'password': this.state.password, 'name': this.state.name })
         } 
         else {
             this.props.userLogin({'email': this.state.email, 'password': this.state.password})
@@ -68,7 +68,9 @@ class Auth extends Component {
             <View style={styles.container}> 
                 <Card>
                     <Card.Content>
-                        <Title style={styles.titleStyle}>Log in please</Title>
+                        <Title style={styles.titleStyle}>
+                            {this.state.newUser ? 'Sign up' : 'Login'}
+                        </Title>
                         {this.state.newUser && <TextInput placeholder="name" value={this.state.name} onChangeText={text => this.onChangeName(text)}/>}        
                         <TextInput placeholder="email" value={this.state.email} onChangeText={text => this.onChangeEmail(text)}/>
                         <TextInput secureTextEntry={true} placeholder="password" value={this.state.password} onChangeText={text => this.onChangePassword(text)}/>

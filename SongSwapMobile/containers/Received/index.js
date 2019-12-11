@@ -33,19 +33,31 @@ class Received extends Component {
     render() { 
         return ( 
             <View style={styles.container}> 
-                <Title style={styles.titleStyle}> 
-                     Last Song You Got
-                </Title>
-                <Card style={{elevation: 10, marginTop: 10}}> 
-                    <Card.Content>
-                        <Title style={styles.titleStyle}> 
-                            {this.props.lastSong.title}
-                        </Title>
-                        <Text style={styles.textStyle}> 
-                            {this.props.lastSong.artist}
-                        </Text>
-                    </Card.Content>
-                </Card>
+                { 
+                    this.props.lastSong.title && this.props.lastSong.artist ?                 
+                    <Title style={styles.titleStyle}> 
+                        Last Song You Got
+                    </Title> : 
+                    <Title style={styles.titleStyle}> 
+                        You Haven't Traded Yet!
+                    </Title> 
+                }
+                {
+                    this.props.lastSong.title && this.props.lastSong.artist ? 
+                    <Card style={{elevation: 10, marginTop: 10}}> 
+                        <Card.Content>
+                            <Title style={styles.titleStyle}> 
+                                {this.props.lastSong.title}
+                            </Title>
+                            <Text style={styles.textStyle}> 
+                                {this.props.lastSong.artist}
+                            </Text>
+                        </Card.Content>
+                    </Card> :
+                    null
+                }
+                
+            
             </View>
         )
     }

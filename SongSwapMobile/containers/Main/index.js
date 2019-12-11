@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setTitle, setArtist, swapSong, retrieveHistory } from './../../duck/actions';
+import { setTitle, setArtist, swapSong, retrieveHistory, retrieveUserPushed } from './../../duck/actions';
 
 import MainScreenForm from '../../components/MainScreenForm';
 
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
 class Main extends Component {
     componentDidMount() {
         this.props.retrieveHistory(); 
+        this.props.retrieveUserPushed(); 
     }
     render() { 
         return ( 
@@ -40,8 +41,8 @@ class Main extends Component {
 }
 
 const mapStateToProps = (state) => { 
-    const { title, artist } = state; 
-    return { title, artist };
+    const { title, artist, user } = state; 
+    return { title, artist, user };
 }
 
 const mapDispatchToProps = (dispatch) => (
@@ -49,7 +50,8 @@ const mapDispatchToProps = (dispatch) => (
         setTitle, 
         setArtist,
         swapSong,
-        retrieveHistory
+        retrieveHistory, 
+        retrieveUserPushed
     }, dispatch)
 )
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

@@ -8,3 +8,4 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const USER_LOGIN = 'USER_LOGIN'; 
 export const SET_USER = 'SET_USER'; 
 export const SET_LOGGEDIN = 'SET_LOGGEDIN'; 
+export const SET_USER_PUSHED = 'SET_USER_PUSHED'; 
