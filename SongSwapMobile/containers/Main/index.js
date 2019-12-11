@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     }
 })
 
-class MainScreen extends Component {
+class Main extends Component {
     componentDidMount() {
         this.props.retrieveHistory(); 
     }
@@ -52,4 +52,4 @@ const mapDispatchToProps = (dispatch) => (
         retrieveHistory
     }, dispatch)
 )
-export default connect(mapStateToProps, mapDispatchToProps)(MainScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(Main)

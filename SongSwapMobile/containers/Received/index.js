@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet} from 'react-native'; 
 import { Text, Title, Card } from 'react-native-paper';
 import { bindActionCreators } from 'redux'; 
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     }
 })
 
-class ReceivedScreen extends Component {   
+class Received extends Component {   
     render() { 
         return ( 
             <View style={styles.container}> 
@@ -57,8 +57,8 @@ const mapStateToProps = (state) => {
     return { lastSong, history }; 
 }
 
-const mapDispatchToProps  = (dispatch) => (
+const mapDispatchToProps = (dispatch) => (
     bindActionCreators({}, dispatch)
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReceivedScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(Received)

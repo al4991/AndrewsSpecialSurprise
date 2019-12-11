@@ -1,8 +1,6 @@
-import { SET_TITLE, SET_ARTIST, ADD_SONG, SET_RECEIVED, SET_HISTORY } from "./types";
+import { SET_TITLE, SET_ARTIST, ADD_SONG, SET_RECEIVED, SET_HISTORY, SET_USER, SET_LOGGEDIN } from "./types";
 import { AsyncStorage } from 'react-native';
-import firebase from 'firebase';
-import "firebase/firestore";
-import db from '../firebaseConfig';
+import firebase, { db } from '../firebaseConfig';
 const songs = db.collection('songs');
 
 export const addSong = () => (
@@ -35,6 +33,41 @@ export const retrieveHistory = () => {
     }
 }
 
+export const userSignup = (userInfo) => {
+    return async (dispatch) => { 
+        try { 
+            const { email, password } = userInfo;
+            firebase.auth().createUserWithEmailAndPassword(email, password);
+        }
+        catch (err) { 
+            console.log(err); 
+        }
+    }
+}
+
+export const userLogin = (userInfo) => { 
+    return async (dispatch) => {
+        try { 
+            const { email, password } = userInfo;
+            firebase.auth().signInWithEmailAndPassword(email, password);         
+        }
+        catch (err) {
+            console.log(err); 
+        }
+    }
+}
+
+export const userLogout = () => {
+    return async (dispatch) => { 
+        try {
+            firebase.auth().signOut();
+        }
+        catch (err) { 
+            console.log(err);
+        }
+    }
+}
+
 export const setHistory = (history) => (
     {
         type: SET_HISTORY, 
@@ -53,8 +86,6 @@ export const setHistory = (history) => (
     https://stackoverflow.com/questions/46798981/firestore-how-to-get-random-documents-in-a-collection
 */
 export const swapSong = function() {
-
-
     const updateHistory = async (dispatch, history, newTitle, newArtist) => {
         const newHistory =  [...history, { title: newTitle, artist: newArtist }]
         try {
@@ -113,9 +144,25 @@ export const setTitle = (text) => (
         payload: text
     }
 )
+
 export const setArtist = (text) => (
     {
         type: SET_ARTIST,
         payload: text
+    }
+)
+
+export const setUser = (user) => (
+    {
+        type: SET_USER, 
+        payload: user
+    }
+)
+
+export const setLoggedin = (loggedin) => (
+    {
+        type: SET_LOGGEDIN, 
+        payload: loggedin
+
     }
 )

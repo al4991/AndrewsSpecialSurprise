@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
        alignContent:'center',
        paddingTop: 40,
     },
-    
+    titleStyle: {
+        textAlign: 'center', 
+    }, 
 })
 
 class History extends Component { 

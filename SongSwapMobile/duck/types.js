@@ -4,3 +4,7 @@ export const SET_ARTIST = 'SET_ARTIST';
 export const SET_RECEIVED = 'SET_RECEIVED'; 
 export const RETRIEVE_HISTORY = 'RETRIEVE_HISTORY';
 export const SET_HISTORY = 'SET_HISTORY'; 
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_LOGIN = 'USER_LOGIN'; 
+export const SET_USER = 'SET_USER'; 
+export const SET_LOGGEDIN = 'SET_LOGGEDIN'; 
