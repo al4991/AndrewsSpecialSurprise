@@ -1,7 +1,7 @@
 [build] 
-  base = "."
+  base = "./songswapweb"
   publish = "./build"
-  command = "cd songswapweb && npm run build"
+  command = "npm run build"
 
 [[redirects]]
   from = "/*"
