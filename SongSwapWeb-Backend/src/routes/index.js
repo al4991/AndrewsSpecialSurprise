@@ -1,10 +1,8 @@
 const express = require('express');
-const path = require("path"); 
 const router = express.Router(); 
 
 const firebase = require('../../firebase.js');
 const db = firebase.firestore(); 
-const auth = firebase.auth(); 
 const songs = db.collection('songs'); 
 const userMeta = db.collection('user-meta'); 
 
@@ -67,18 +65,7 @@ router.get('/swapSong/:user', (req, res) => {
                         artist: doc1.data().artist, 
                         receiver: user
                     })
-                    // .then(ref => res.send(rex/f))
                     .catch(err => console.log(err));
-
-                    // userMeta.where(firebase.firestore.FieldPath.documentId(), '==', user)
-                    // .limit(1).get()
-                    // .then(snapshot2 => {
-                    //     snapshot2.forEach(doc2 => {
-                    //         let data = [...JSON.parse(doc2.data().received)];
-                    //         data.push(doc1.data());
-                    //         userMeta.doc(doc2.id).update({received: JSON.stringify(data)});
-                    //     })
-                    // })
                     res.send(doc1.data());
                     
                 });
@@ -86,16 +73,7 @@ router.get('/swapSong/:user', (req, res) => {
             .catch(err => console.log(err));
         }
         else {
-            snapshot.forEach(doc1 => {       
-                // userMeta.where(firebase.firestore.FieldPath.documentId(), '==', user)
-                // .limit(1).get()
-                // .then(snapshot2 => {
-                    // snapshot2.forEach(doc2 => {
-                    //     let data = [...JSON.parse(doc2.data().received)];
-                    //     data.push(doc1.data());
-                    //     userMeta.doc(doc2.id).update({received: JSON.stringify(data)});
-                    // })
-                // })
+            snapshot.forEach(doc1 => { 
                 userMeta.add({
                     name: doc1.data().name, 
                     artist: doc1.data().artist, 
@@ -124,8 +102,4 @@ router.get('/addSong/:user', (req, res) => {
     .catch(err => res.send(err)); 
 }); 
 
-
 module.exports = router; 
-
-
-
