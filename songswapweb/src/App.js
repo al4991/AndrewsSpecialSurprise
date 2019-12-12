@@ -8,7 +8,7 @@ import Header from './components/Header';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); 
-  const [user, setUser ] = useState({})
+  const [user, setUser] = useState({})
 
 
   useEffect(() => { 
@@ -45,7 +45,9 @@ function App() {
         firebase.auth().currentUser.updateProfile({
           displayName: name
         })
-        setLoggedIn(true);
+        .then(() => {
+          setLoggedIn(true);
+        })
       })
       .catch(err => console.log('err', err)); 
   }
