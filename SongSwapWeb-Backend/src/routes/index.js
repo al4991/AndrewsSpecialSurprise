@@ -27,12 +27,12 @@ router.get('/sentSongs/:user', (req, res) => {
 
 router.get('/receivedSongs/:user', (req, res) => {
     let user = req.params.user; 
-    let data = []; 
-    userMeta.where(firebase.firestore.FieldPath.documentId(), '==', user)
+    const data = []; 
+    userMeta.where('receiver', '==', user)
     .limit(1).get()
     .then(snapshot => {
         snapshot.forEach(doc => {
-            data = JSON.parse(doc.data().received);
+            data.push(doc.data());
         })
         res.send(data); 
     })
@@ -63,16 +63,23 @@ router.get('/swapSong/:user', (req, res) => {
             .limit(1).get()
             .then(snapshot1 => {
                 snapshot1.forEach(doc1 => {       
-
-                    userMeta.where(firebase.firestore.FieldPath.documentId(), '==', user)
-                    .limit(1).get()
-                    .then(snapshot2 => {
-                        snapshot2.forEach(doc2 => {
-                            let data = [...JSON.parse(doc2.data().received)];
-                            data.push(doc1.data());
-                            userMeta.doc(doc2.id).update({received: JSON.stringify(data)});
-                        })
+                    userMeta.add({
+                        name: doc1.data().name, 
+                        artist: doc1.data().artist, 
+                        receiver: user
                     })
+                    // .then(ref => res.send(rex/f))
+                    .catch(err => console.log(err));
+
+                    // userMeta.where(firebase.firestore.FieldPath.documentId(), '==', user)
+                    // .limit(1).get()
+                    // .then(snapshot2 => {
+                    //     snapshot2.forEach(doc2 => {
+                    //         let data = [...JSON.parse(doc2.data().received)];
+                    //         data.push(doc1.data());
+                    //         userMeta.doc(doc2.id).update({received: JSON.stringify(data)});
+                    //     })
+                    // })
                     res.send(doc1.data());
                     
                 });
@@ -81,17 +88,22 @@ router.get('/swapSong/:user', (req, res) => {
         }
         else {
             snapshot.forEach(doc1 => {       
-                userMeta.where(firebase.firestore.FieldPath.documentId(), '==', user)
-                .limit(1).get()
-                .then(snapshot2 => {
-                    snapshot2.forEach(doc2 => {
-                        let data = [...JSON.parse(doc2.data().received)];
-                        data.push(doc1.data());
-                        userMeta.doc(doc2.id).update({received: JSON.stringify(data)});
-                    })
+                // userMeta.where(firebase.firestore.FieldPath.documentId(), '==', user)
+                // .limit(1).get()
+                // .then(snapshot2 => {
+                    // snapshot2.forEach(doc2 => {
+                    //     let data = [...JSON.parse(doc2.data().received)];
+                    //     data.push(doc1.data());
+                    //     userMeta.doc(doc2.id).update({received: JSON.stringify(data)});
+                    // })
+                // })
+                userMeta.add({
+                    name: doc1.data().name, 
+                    artist: doc1.data().artist, 
+                    receiver: user
                 })
+                .catch(err => console.log(err))
                 res.send(doc1.data());
-                
             })
         }
     })
