@@ -8,6 +8,9 @@ const auth = firebase.auth();
 const songs = db.collection('songs'); 
 const userMeta = db.collection('user-meta'); 
 
+router.get('/', (req, res) => { 
+    res.send('hi')
+})
 
 router.get('/sentSongs/:user', (req, res) => {
     let user = req.params.user; 
@@ -42,6 +45,11 @@ flow should be as follows
 - user adds random song to record of all pulled songs
     - this is an array of objets that is stored as json data
 - user adds own song to database
+*/
+/*
+if current way of keeping track of new shit isnt working, try to just store all received in a new store, 
+storing recipient uid to pull
+    - dumb inefficient but simple
 */
 router.get('/swapSong/:user', (req, res) => { 
     let user = req.params.user; 
