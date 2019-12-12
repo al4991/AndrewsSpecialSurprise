@@ -1,0 +1,40 @@
+.App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #09d3ac;
+  }
+  
+  .Header {
+    border-bottom: 2px black;
+    margin: 0 auto; 
+    max-width: 1048px;
+  }
+  
+  .Header nav { 
+    align-items: center;
+    display: flex; 
+    justify-content: flex-end;
+  }
+  
+  .Header nav a {
+    color: black; 
+    display: inline-block; 
+    padding: 5px 15px;
+  }
