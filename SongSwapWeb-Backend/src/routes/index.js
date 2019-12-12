@@ -28,8 +28,7 @@ router.get('/sentSongs/:user', (req, res) => {
 router.get('/receivedSongs/:user', (req, res) => {
     let user = req.params.user; 
     const data = []; 
-    userMeta.where('receiver', '==', user)
-    .limit(1).get()
+    userMeta.where('receiver', '==', user).get()
     .then(snapshot => {
         snapshot.forEach(doc => {
             data.push(doc.data());
